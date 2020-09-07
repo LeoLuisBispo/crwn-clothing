@@ -15,7 +15,12 @@ var _rootReducer = _interopRequireDefault(require("./root-reducer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var middlewares = [_reduxLogger["default"]];
+var middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(_reduxLogger["default"]);
+}
+
 var store = (0, _redux.createStore)(_rootReducer["default"], _redux.applyMiddleware.apply(void 0, middlewares));
 exports.store = store;
 var persistor = (0, _reduxPersist.persistStore)(store);
