@@ -8,44 +8,46 @@ import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector
 
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 
-import './checkout.styles.scss';
+// import './checkout.styles.scss';
+
+import { CheckoutHeaderContainer, CheckoutPageContainer, HeaderBlock, TotalContainer, WarningContainer } from './checkout.styles';
 
 const CheckoutPage = ({ cartItems, total }) => (
-    <div className='checkout-page'>
-        <div className='checkout-header'>
-            <div className='header-block'>
+    <CheckoutPageContainer>
+        <CheckoutHeaderContainer>
+            <HeaderBlock>
                 <span>Product</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlock>
+            <HeaderBlock>
                 <span>Description</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlock>
+            <HeaderBlock>
                 <span>Quantity</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlock>
+            <HeaderBlock>
                 <span>Price</span>
-            </div>
-            <div className='header-block'>
+            </HeaderBlock>
+            <HeaderBlock>
                 <span>Remove</span>
-            </div>
+            </HeaderBlock>
 
-        </div>
+        </CheckoutHeaderContainer>
         {
             cartItems.map(cartItem =>
                 <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
             )
         }
 
-        <div className='total'>TOTAL: ${total}</div>
+        <TotalContainer>TOTAL: ${total}</TotalContainer>
 
-        <div className='test-warning'>
+        <WarningContainer>
             *please use the test following test card for payments*
             <br/>
             4242 4242 4242 4242 4242 - exp: 01/21 - cvv: 123
-        </div>
+        </WarningContainer>
 
         <StripeCheckoutButton price={total}/>
-    </div>
+    </CheckoutPageContainer>
 );
 
 const mapStateToProps = createStructuredSelector({

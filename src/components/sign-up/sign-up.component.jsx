@@ -5,8 +5,10 @@ import CustomButton from '../custom-button/custom-button.component';
 import { ToastContainer, toast } from 'react-toastify';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
-import './sign-up.styles.scss';
+// import './sign-up.styles.scss';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { SigUpTitle, SignUpContainer } from './sign-up.styles';
 
 
 class SignUp extends React.Component {
@@ -61,9 +63,9 @@ class SignUp extends React.Component {
         const {displayName, email, password, confirmPassword} = this.state;
 
         return(
-            <div className='sign-up'>
+            <SignUpContainer>
                 <ToastContainer />
-                <h2 className='title'>i do not have a account</h2>
+                <SigUpTitle>i do not have a account</SigUpTitle>
                 <span>sign up with your email and password</span>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                     <FormInput
@@ -100,7 +102,7 @@ class SignUp extends React.Component {
 
                     <CustomButton type='submit'>SIGN UP</CustomButton>
                 </form>
-            </div>
+            </SignUpContainer>
         )
     }
 }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.selectCollectionsForPreview = exports.selectCollection = exports.selectCollections = void 0;
+exports.selectCollection = exports.selectCollectionsForPreview = exports.selectCollections = void 0;
 
 var _reselect = require("reselect");
 
@@ -15,17 +15,17 @@ var selectCollections = (0, _reselect.createSelector)([selectShop], function (sh
   return shop.collections;
 });
 exports.selectCollections = selectCollections;
+var selectCollectionsForPreview = (0, _reselect.createSelector)([selectCollections], function (collections) {
+  return collections ? Object.keys(collections).map(function (key) {
+    return collections[key];
+  }) : [];
+});
+exports.selectCollectionsForPreview = selectCollectionsForPreview;
 
 var selectCollection = function selectCollection(collectionUrlParam) {
   return (0, _reselect.createSelector)([selectCollections], function (collections) {
-    return collections[collectionUrlParam];
+    return collections ? collections[collectionUrlParam] : null;
   });
 };
 
 exports.selectCollection = selectCollection;
-var selectCollectionsForPreview = (0, _reselect.createSelector)([selectCollections], function (collections) {
-  return Object.keys(collections).map(function (key) {
-    return collections[key];
-  });
-});
-exports.selectCollectionsForPreview = selectCollectionsForPreview;
